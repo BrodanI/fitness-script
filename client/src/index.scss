@@ -1,3 +1,9 @@
-*{
+@use './assets/partials/variables' as *;
+@use './assets/partials/fonts' as *;
+
+*, *::before, *::after{
     margin: 0;
+    box-sizing: border-box;
+    // background-color: $background;
+    font-family:'Montserrat', sans-serif ;
 }

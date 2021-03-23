@@ -1,0 +1,37 @@
+@use "../assets/partials/mixins" as *;
+@use "../assets/partials/variables" as *;
+
+.home {
+    margin: 1rem;
+    @include flex-column;
+    align-items: center;
+    &__progress {
+        border: 2px solid $blue;
+    }
+
+    &__select-workout {
+        border: 2px solid $blue;
+        margin: 1rem;
+        text-decoration: none;
+        color: $green;
+    }
+
+    &__create {
+        @include flex-row;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+
+        &-exercise {
+            text-decoration: none;
+            color: $green;
+            border: 2px solid $blue;
+
+        }
+        &-workout {
+            text-decoration: none;
+            color: $green;
+            border: 2px solid $blue;
+
+        }
+    }
+}

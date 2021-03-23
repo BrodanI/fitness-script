@@ -1,0 +1,57 @@
+@use "./variables" as *;
+
+// Mobile/Tablet Fonts
+@mixin h1 {
+    font-size: 28px;
+    line-height: 36px;
+}
+
+@mixin h2 {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+@mixin h3-labels-links-buttons {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+@mixin h4-table-header {
+    font-size: 11px;
+    line-height: 16px;
+}
+
+@mixin body-large {
+    font-size: 15px;
+    line-height: 26px;
+}
+
+@mixin body-med {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+@mixin body-small {
+    font-size: 11px;
+    line-height: 16px;
+}
+
+@mixin divider {
+    border-bottom: 1px solid $blue;
+}
+
+// Flexbox
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin clickedBorder {
+    border: solid 2px $primary-cta-txt-link;
+    outline: none;
+}
