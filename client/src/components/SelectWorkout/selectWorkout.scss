@@ -1,0 +1,32 @@
+@use '../../assets/partials/variables' as *;
+@use '../../assets/partials/mixins' as *;
+
+.selectWorkout{
+    margin: 1rem;
+
+    &__select{
+        background-color: $green;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    &__category{
+        @include h4-table-header;
+        color: $green;
+        @include flex-row;
+        justify-content: space-between;
+    }
+
+    &__item{
+        @include flex-row;
+        justify-content: space-between;
+
+        &-single{
+            background-color: $green;
+            border-radius: 5px;
+            width: 20%;
+
+        }
+
+    }
+}

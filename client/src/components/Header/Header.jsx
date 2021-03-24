@@ -8,8 +8,8 @@ function Header(props) {
     return (
         <div className="header">
             <img className="header__logo" src={Logo} alt="" />
-            <h1 className="header__name">Fitness Script</h1>
-            <Button className="button">Hello World</Button>
+            <Button color="primary">Fitness Script</Button>
+            <MenuIcon color="primary"></MenuIcon>
         </div>
     );
 }
