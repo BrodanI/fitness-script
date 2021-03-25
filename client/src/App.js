@@ -51,8 +51,8 @@ const theme = createMuiTheme({
 export default class App extends Component {
 
   state = {
-    workoutName: null,
-    exercise: [
+    workouts: null,
+    exercises: [
       {
       exerciseName: 1,
       muscle: 2,
@@ -90,8 +90,8 @@ export default class App extends Component {
                 <Route path='/' exact component={Home} />
                 <Route path='/workout'
                   render={() => <SelectWorkout
-                    workoutName={this.state.workoutName}
-                    exercise={this.state.exercise}
+                    workouts={this.state.workouts}
+                    exercises={this.state.exercises}
                   // muscle={this.state.muscle}
                   // repsTime={this.state.repsTime}
                   // weight={this.state.weight}

@@ -34,8 +34,7 @@ function SelectWorkout(props) {
                 >
                     <option aria-label="None" value="" />
                     <option value={10}>Ten</option>
-                    <option value={20}>Twenty</option>
-                    <option value={30}>Thirty</option>
+                    
                 </Select>
             </FormControl>
             <div className="selectWorkout__category">
@@ -46,7 +45,7 @@ function SelectWorkout(props) {
             </div>
 
             <div>
-                {props.exercise.map((exercise) => {
+                {props.exercises.map((exercise) => {
                     return (
                         <div className="selectWorkout__item">
                             <TextField 
