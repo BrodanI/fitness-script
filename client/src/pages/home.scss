@@ -7,30 +7,44 @@
     align-items: center;
     &__progress {
         border: 2px solid $blue;
+        border-radius: 10px;
+        height: 15vh;
+        width: 100%;
+        color: $lightGreen;
+        text-align: center;
+        padding-top: 20px;
     }
 
     &__select-workout {
-        border: 2px solid $blue;
+        background: 
+        linear-gradient(rgba($color: $background, $alpha: 0.5), rgba($color: $background, $alpha: 0.5)),
+        url("../assets/img/selectWorkout.jpg");
+        @include homeCard;
+        height: 15vh;
+        width: 100%;
         margin: 1rem;
-        text-decoration: none;
-        color: $green;
     }
 
     &__create {
         @include flex-row;
-        justify-content: space-between;
-        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 40vh;
+        text-align: center;
+        width: 100%;
 
         &-exercise {
-            text-decoration: none;
-            color: $green;
-            border: 2px solid $blue;
-
+            background: 
+            linear-gradient(rgba($color: $background, $alpha: 0.5), rgba($color: $background, $alpha: 0.5)),
+            url("../assets/img/createExercise.jpg");
+            @include homeCard;
+            margin-right: 1rem;
+            
         }
         &-workout {
-            text-decoration: none;
-            color: $green;
-            border: 2px solid $blue;
+            background: 
+            linear-gradient(rgba($color: $background, $alpha: 0.5), rgba($color: $background, $alpha: 0.5)),
+            url("../assets/img/createWorkout.jpg");
+            @include homeCard
 
         }
     }

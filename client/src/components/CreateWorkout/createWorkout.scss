@@ -1,0 +1,28 @@
+@use '../../assets/partials/variables' as *;
+@use '../../assets/partials/mixins' as *;
+
+
+.createWorkout{
+    margin: 1rem;
+    
+    &__input{
+        @include exerciseDivider;
+        padding-bottom: 1rem;
+        
+        &-workout{
+            background-color: $blue;
+            border-radius: 5px;
+            box-shadow:  2px 5px 0px 0px $darkBlue;
+            width: 100%;
+            &--margin{
+                margin-bottom: 1.313rem;
+            }
+        }
+        
+        &-exercise{
+            background-color: $medGreen;
+            border-radius: 5px;
+            width: 100%;
+        }
+    }
+}

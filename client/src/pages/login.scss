@@ -1,0 +1,41 @@
+@use "../assets/partials/mixins" as *;
+@use "../assets/partials/variables" as *;
+
+.login {
+    @include flex-column;
+    align-items: center;
+    margin: 1rem;
+
+    &__title {
+        color: $medGreen;
+    }
+
+    &__logo {
+        height: 13rem;
+        margin: 1.5rem 0;
+    }
+
+    &__form {
+        width: 100%;
+        // background-color: $blue;
+        border-radius: 5px;
+        @include flex-column;
+        justify-content: space-between;
+        height: 16rem;
+
+        &-input {
+            background-color: $blue;
+            box-shadow:  2px 5px 0px 0px $darkBlue;
+        }
+
+        &-btn{
+            width: 100%;
+            background-color: $medGreen !important;
+            box-shadow:  2px 5px 0px 0px $green !important;
+
+            &--link{
+                text-decoration: none;
+            }
+        }
+    }
+}

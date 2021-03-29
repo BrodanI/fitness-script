@@ -1,0 +1,21 @@
+@use '../../assets/partials/variables' as *;
+@use '../../assets/partials/mixins' as *;
+
+.footer__btn {
+    @include flex-row;
+    justify-content: space-between;
+
+    &-link {
+        width: 47%;
+        text-decoration: none;
+        color: black;
+        box-shadow:  2px 5px 0px 0px $green;
+        border-radius: 5px;
+    }
+
+    &--size {
+        width: 100%;
+        height: 100%;
+    }
+}
+   

@@ -1,0 +1,32 @@
+@use '../../assets/partials/variables' as *;
+@use '../../assets/partials/mixins' as *;
+
+.createExercise{
+    margin: 1rem;
+    
+    &__field{
+        @include flex-row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        
+        &-name{
+            color: $medGreen;
+            width: 45%;
+        }
+        
+        &-input{
+            background-color: $blue;
+            border-radius: 5px;
+            width: 55%;
+        }
+        
+        &--divider{
+            padding-bottom: 1rem;
+            @include exerciseDivider;
+
+        }
+    }
+    
+
+}

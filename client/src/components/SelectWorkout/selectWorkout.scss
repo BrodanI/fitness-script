@@ -1,32 +1,52 @@
 @use '../../assets/partials/variables' as *;
 @use '../../assets/partials/mixins' as *;
 
-.selectWorkout{
+.selectWorkout {
     margin: 1rem;
 
-    &__select{
-        background-color: $green;
+    &__select {
+        background-color: $medGreen;
         border-radius: 5px;
         width: 100%;
     }
 
-    &__category{
-        @include h4-table-header;
-        color: $green;
-        @include flex-row;
-        justify-content: space-between;
+    &__item {
+        @include flex-column;
+        @include exerciseDivider;
+
+        &-row {
+            @include flex-row;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+
+            &-single {
+                background-color: $blue;
+                border-radius: 5px;
+                width: 47%;
+                box-shadow:  2px 5px 0px 0px $darkBlue;
+            }
+
+            &--margin {
+                margin-top: 1.5rem;
+            }
+        }
     }
 
-    &__item{
+    &__btn{
         @include flex-row;
         justify-content: space-between;
-
-        &-single{
-            background-color: $green;
+    
+        &-link {
+            width: 47%;
+            text-decoration: none;
+            color: black;
+            box-shadow:  2px 5px 0px 0px $green;
             border-radius: 5px;
-            width: 20%;
-
         }
-
+    
+        &--size {
+            width: 100%;
+            height: 100%;
+        }
     }
 }

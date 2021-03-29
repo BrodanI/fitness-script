@@ -4,10 +4,11 @@ import axios from "axios";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { StylesProvider, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Home from "./pages/Home"
-import Header from './components/Header/Header'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 import SelectWorkout from './components/SelectWorkout/SelectWorkout'
-import Login from "./pages/Login"
-import { blue } from "@material-ui/core/colors";
+import CreateWorkout from './components/CreateWorkout/CreateWorkout'
+import CreateExercise from './components/CreateExercise/CreateExercise'
 
 const theme = createMuiTheme({
   //   primary - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
@@ -21,23 +22,23 @@ const theme = createMuiTheme({
       default: '#101820',
     },
     primary: {
-      // light: will be calculated from palette.primary.main,
       main: '#20B460', //bottomLogo
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
-      main: '#2074b4',
+      main: '#2074b4', //blue
     },
     error: {
       main: '#b42f20', //red
     },
+    delete: {
+      main: 'b42f20',
+    },
     // warning: {
     //   main: '#0044ff',
     // },
-    // info: {
-    //   main: '#0044ff',
-    // },
+    info: {
+      main: '#b42f20',
+    },
     // success: {
     //   main: '#0044ff', 
     // },
@@ -45,19 +46,16 @@ const theme = createMuiTheme({
   }
 });
 
-
-
-
 export default class App extends Component {
 
   state = {
     workouts: null,
     exercises: [
       {
-      exerciseName: 1,
-      muscle: 2,
-      repsTime: 3,
-      weight: 4
+      exerciseName: "Hammer Curl",
+      muscle: "Bicep",
+      repsTime: "20",
+      weight: "30lbs"
     }
     ]
   }
@@ -83,18 +81,32 @@ export default class App extends Component {
             <ThemeProvider theme={theme}>
               <CssBaseline />
 
-              <Header />
-
               <Switch>
-
                 <Route path='/' exact component={Home} />
-                <Route path='/workout'
+                <Route path='/selectWorkout'
                   render={() => <SelectWorkout
                     workouts={this.state.workouts}
                     exercises={this.state.exercises}
-                  // muscle={this.state.muscle}
-                  // repsTime={this.state.repsTime}
-                  // weight={this.state.weight}
+                  />}
+                />
+
+                <Route path='/login' exact
+                  render={() => <Login/>}
+                />
+                <Route path='/login/signup'
+                  render={() => <Signup/>}
+                />
+
+                <Route path='/createExercise'
+                  render={() => <CreateExercise
+                    workouts={this.state.workouts}
+                    exercises={this.state.exercises}
+                  />}
+                />
+                <Route path='/createWorkout'
+                  render={() => <CreateWorkout
+                    workouts={this.state.workouts}
+                    exercises={this.state.exercises}
                   />}
                 />
                 {/* <Route path='/login' component={Login} /> */}
