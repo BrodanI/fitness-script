@@ -11,12 +11,6 @@ import CreateWorkout from './components/CreateWorkout/CreateWorkout'
 import CreateExercise from './components/CreateExercise/CreateExercise'
 
 const theme = createMuiTheme({
-  //   primary - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
-  // secondary - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
-  // error - used to represent interface elements that the user should be made aware of.
-  // warning - used to represent potentially dangerous actions or important messages.
-  // info - used to present information to the user that is neutral and not necessarily important.
-  // success - used to indicate the successful completion of an action that user triggered.
   palette: {
     background: {
       default: '#101820',
@@ -49,33 +43,77 @@ const theme = createMuiTheme({
 export default class App extends Component {
 
   state = {
-    workouts: null,
-    exercises: [
-      {
-      exerciseName: "Hammer Curl",
-      muscle: "Bicep",
-      repsTime: "20",
-      weight: "30lbs"
-    }
-    ]
+    workouts: [],
+    exercises: [],
+    exerciseName: null,
+    muscle: null,
+    respTime: null,
+    weight: null,
   }
 
-  // componentDidMount() {
-  //     this.setState({
-  //       workoutName: null,
-  //     })
-  // }
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+
+    console.log({
+      [e.target.name]: e.target.value
+    })
+    console.log(this.state.exercises);
+  };
+
+  addExercise = (e) => {
+    e.preventDefault();
+
+    axios.post('http://localhost:8080/createExercise', {
+      exerciseName: this.state.exerciseName,
+      muscle: this.state.muscle,
+      repsTime: this.state.repsTime,
+      weight: this.state.weight
+    }).then((response) => {
+      this.setState({
+        exercises: response.data
+      });
+    });
+  };
+
+  componentDidMount() {
+    axios.get('http://localhost:8080/createExercise').then((response) => {
+
+      this.setState({
+        exercises: response.data,
+      });
+    }).then(() => {
+      axios.get('http://localhost:8080/createWorkout').then((response) => {
+
+        this.setState({
+          workouts: response.data
+        });
+      });
+    });
+  };
 
 
-  // componentDidUpdate(prevProps) {
-  //   this.setState({
-  //     workoutName: null,
-  //   })
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(prevProps, prevState);
+  //   if (prevState.workouts !== this.state.workouts) {
+
+  //     let ex = axios.get('http://localhost:8080/createExercise')
+  //     let wo = axios.get('http://localhost:8080/createWorkout')
+  //     axios
+  //       .all([ex, wo])
+  //       .then(
+  //         axios.spread((...responses) => {
+  //           this.setState({
+  //             exercises: responses.data,
+  //             workouts: responses.data,
+  //           });
+  //         })
+  //       )
+  //   }
   // }
 
   render() {
     return (
-      <div className="App">
+      <div className="App" >
         <BrowserRouter>
           <Router className="App">
             <ThemeProvider theme={theme}>
@@ -91,16 +129,18 @@ export default class App extends Component {
                 />
 
                 <Route path='/login' exact
-                  render={() => <Login/>}
+                  render={() => <Login />}
                 />
                 <Route path='/login/signup'
-                  render={() => <Signup/>}
+                  render={() => <Signup />}
                 />
 
                 <Route path='/createExercise'
                   render={() => <CreateExercise
                     workouts={this.state.workouts}
                     exercises={this.state.exercises}
+                    addExercise={this.addExercise}
+                    onChange={this.onChange}
                   />}
                 />
                 <Route path='/createWorkout'

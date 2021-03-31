@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer.jsx'
 import TextField from '@material-ui/core/TextField';
 
 function CreateExercise(props) {
+    console.log(props)
     return (
         <>
             <Header />
@@ -18,6 +19,8 @@ function CreateExercise(props) {
                         id="filled-basic"
                         label="Enter"
                         variant="filled"
+                        name="exerciseName"
+                        onChange= {props.onChange}
                     />
                 </div>
                 <div className="createExercise__field">
@@ -27,6 +30,8 @@ function CreateExercise(props) {
                         id="filled-basic"
                         label="Enter"
                         variant="filled"
+                        name="muscle"
+                        onChange= {props.onChange}
                     />
                 </div>
                 <div className="createExercise__field">
@@ -36,6 +41,8 @@ function CreateExercise(props) {
                         id="filled-basic"
                         label="Enter"
                         variant="filled"
+                        name="repsTime"
+                        onChange= {props.onChange}
                     />
                 </div>
                 <div className="createExercise__field createExercise__field--divider">
@@ -45,12 +52,14 @@ function CreateExercise(props) {
                         id="filled-basic"
                         label="Enter"
                         variant="filled"
+                        name="weight"
+                        onChange= {props.onChange}
                     />
                 </div>
 
                 <ExerciseDisplay />
 
-                <Footer />
+                <Footer exercises={props.exercises} addExercise={props.addExercise}/>
             </div>
         </>
     );

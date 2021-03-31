@@ -4,7 +4,7 @@ module.exports =[
         exerciseName: "Bicep Curl",
         muscle: "Bicep",
         repsTime: "20",
-        weight: "40"
+        weight: "40lbs"
     },
     {
         id: 2,

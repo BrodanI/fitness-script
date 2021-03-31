@@ -1,66 +1,34 @@
 import React from 'react';
 import './selectWorkout.scss'
 import Header from '../Header/Header'
-import { Button, TextField, FormControl} from '@material-ui/core';
+import { Button, TextField, FormControl } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
-
-const currencies = [
-    {
-        value: 'USD',
-        label: '$',
-    },
-    {
-        value: 'EUR',
-        label: '€',
-    },
-    {
-        value: 'BTC',
-        label: '฿',
-    },
-    {
-        value: 'JPY',
-        label: '¥',
-    },
-];
-
-
-
 function SelectWorkout(props) {
-    console.log(props.exercise)
+    console.log(props.exercises)
 
-    // const handleChange = (event) => {
-    //     const workoutName = event.target.name;
-    //     this.setState({
-    //       [workoutName]: event.target.value,
-    //     });
-    //   };
+    const displayExercises = (event) => {
+
+      };
 
     return (
         <>
             <Header />
-
             <div className="selectWorkout">
                 <FormControl variant="filled" className="selectWorkout__select">
                     <TextField
-
-                        id="filled-select-currency-native"
                         select
+                        variant="filled"
                         label="Select Workout"
-                        // value={currency}
-                        // onChange={handleChange}
-                        // SelectProps={{
-                        //     native: true,
-                        // }}
-                        variant="filled" >
+                        onChange={displayExercises}
+                         >
 
-                        {
-                            currencies.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                    {option.label}
-                                </option>
-                            ))
-                        }
+                        {/* {console.log(props.workouts)} */}
+                        {props.workouts.map((props) => (
+                            <option value={props.workoutName}>
+                                {props.workoutName}
+                            </option>
+                        ))}
                     </TextField>
                 </FormControl>
 
