@@ -32,6 +32,7 @@ class ExerciseComponent extends React.Component {
                         id="filled-basic"
                         label="Muscle"
                         variant="filled"
+                        name="muscle"
                         defaultValue={this.props.exercise.muscle}
                         onBlur={(e) => {
                             e.preventDefault();
@@ -45,6 +46,7 @@ class ExerciseComponent extends React.Component {
                         id="filled-basic"
                         label="Reps/Time"
                         variant="filled"
+                        name="repsTime"
                         defaultValue={this.props.exercise.repsTime}
                         onBlur={(e) => {
                             e.preventDefault();
@@ -56,6 +58,7 @@ class ExerciseComponent extends React.Component {
                         id="filled-basic"
                         label="Weight"
                         variant="filled"
+                        name="weight"
                         defaultValue={this.props.exercise.weight}
                         onBlur={(e) => {
                             e.preventDefault();

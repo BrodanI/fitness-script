@@ -66,6 +66,8 @@ export default class App extends Component {
       return item;
     })
 
+    console.log(newExerciseList);
+
     this.setState({ exercises: newExerciseList })
 
     let ui = this.state.exercises.find((ex) => ex.id === id)
