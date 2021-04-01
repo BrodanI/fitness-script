@@ -52,6 +52,7 @@ export default class App extends Component {
     muscle: null,
     respTime: null,
     weight: null,
+    updated: false,
   }
 
   updateExercise = (e, id) => {
@@ -65,25 +66,21 @@ export default class App extends Component {
       };
       return item;
     })
-
     console.log(newExerciseList);
-
     this.setState({ exercises: newExerciseList })
-
     let ui = this.state.exercises.find((ex) => ex.id === id)
-      
-    axios.put(`http://localhost:8080/updateExercise/${ui.id}`, {
 
+    axios.put(`http://localhost:8080/updateExercise/${ui.id}`, {
       exerciseName: ui.exerciseName,
       muscle: ui.muscle,
       repsTime: ui.repsTime,
       weight: ui.weight
-
     })
   };
 
   addExercise = (e) => {
     e.preventDefault();
+    console.log("triggered");
 
     axios.post('http://localhost:8080/createExercise', {
       exerciseName: this.state.exerciseName,
@@ -91,8 +88,12 @@ export default class App extends Component {
       repsTime: this.state.repsTime,
       weight: this.state.weight
     }).then((response) => {
-      this.setState({
-        exercises: response.data
+      axios.get('http://localhost:8080/createExercise').then((response) => {
+
+        this.setState({
+          exercises: response.data,
+          updated: true,
+        });
       });
     });
   };
@@ -114,24 +115,25 @@ export default class App extends Component {
     });
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.workouts !== this.state.workouts) {
-  //     console.log(prevProps, prevState);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.updated !== this.state.updated) {
+      console.log(this.state.exercises);
 
-  //     let ex = axios.get('http://localhost:8080/createExercise')
-  //     let wo = axios.get('http://localhost:8080/createWorkout')
-  //     axios
-  //       .all([ex, wo])
-  //       .then(
-  //         axios.spread((...responses) => {
-  //           this.setState({
-  //             exercises: responses.data,
-  //             workouts: responses.data,
-  //           });
-  //         })
-  //       )
-  //   }
-  // }
+      let ex = axios.get('http://localhost:8080/createExercise')
+      let wo = axios.get('http://localhost:8080/createWorkout')
+      axios.all([ex, wo])
+        .then(
+          axios.spread((...responses) => {
+            this.setState({
+              exercises: responses[0].data,
+              workouts: responses[1].data,
+              updated: false,
+            });
+            console.log(this.state.exercises);
+          })
+        )
+    }
+  }
 
 
   render() {

@@ -51,14 +51,15 @@ router.put('/:id', (req, res) => {
     // }
 });
 
-router.delete('/:id'), (req, res) => {
-    Exercises
-    .where({ id: req.params.id })
+router.delete('/:id', (req, res) => {
+    console.log('server delete');
+    console.log(req.params.id)
+    Exercises.where( 'id', req.params.id )
     .destroy() 
     .then(() => {
       res.status(204).json({ status: "Deleted" });
     })
-}
+})
 
 
 

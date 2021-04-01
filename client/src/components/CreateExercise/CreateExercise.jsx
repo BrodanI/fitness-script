@@ -58,11 +58,12 @@ function CreateExercise(props) {
                     />
                 </div>
 
-                {props.exercises.map((exercise) => {
+                {props.exercises && props.exercises.map((exercise) => {
+                    console.log(props.exercises);
                     return (
                         <>
                             <ExerciseComponent exercise={exercise} />
-                            <DeleteBtn />
+                            <DeleteBtn exercise={exercise} />
                         </>
                     )
                 })
