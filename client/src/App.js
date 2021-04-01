@@ -78,11 +78,15 @@ export default class App extends Component {
     })
   };
 
-  addExercise = (e) => {
-    e.preventDefault();
-    console.log("triggered");
+  onChange = (e) => {
+    e.preventDefault()
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
-    axios.post('http://localhost:8080/createExercise', {
+  createExercise = () => {
+    axios.post(`http://localhost:8080/createExercise`, {
       exerciseName: this.state.exerciseName,
       muscle: this.state.muscle,
       repsTime: this.state.repsTime,
@@ -97,6 +101,7 @@ export default class App extends Component {
       });
     });
   };
+
 
 
   componentDidMount() {
@@ -166,6 +171,7 @@ export default class App extends Component {
                     workouts={this.state.workouts}
                     exercises={this.state.exercises}
                     addExercise={this.addExercise}
+                    createExercise={this.createExercise}
                     onChange={this.onChange}
                   />}
                 />

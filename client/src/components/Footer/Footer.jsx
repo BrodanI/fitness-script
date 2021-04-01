@@ -20,7 +20,7 @@ function footer(props) {
 
             <Link className="footer__btn-link" >
                 <Button
-                    onClick={props.addExercise}
+                    onClick={props.createExercise}
                     variant="contained"
                     color="primary"
                     className="footer__btn--size">

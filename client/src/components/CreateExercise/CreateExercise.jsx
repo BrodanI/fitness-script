@@ -69,7 +69,7 @@ function CreateExercise(props) {
                 })
                 };
 
-                <Footer exercises={props.exercises} addExercise={props.addExercise} />
+                <Footer exercises={props.exercises} addExercise={props.addExercise} createExercise={props.createExercise} />
             </div>
         </>
     );

@@ -28,7 +28,6 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     // if (req.body.exerciseId) {
-        console.log(req.params.id)
         Exercises.where( 'id', req.params.id)
             .fetch()
             .then(exercises => {
@@ -52,8 +51,6 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    console.log('server delete');
-    console.log(req.params.id)
     Exercises.where( 'id', req.params.id )
     .destroy() 
     .then(() => {
