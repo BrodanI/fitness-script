@@ -15,34 +15,6 @@ class SelectWorkout extends React.Component {
 
     render() {
 
-        // if ref is not equal to onBlur && state has changed then do put request
-
-
-
-        // if (this.exerciseNameRef !== onBlur() && this.state.exercises){
-        //     const updateExercise = (e, id) => {
-        //         e.preventDefault();
-        //         console.log("PR button clicked");
-
-        //         axios.put(`http://localhost:8080/updateExercise/${id}`, {
-
-        //           exerciseName: this.state.exercises.exerciseName,
-        //           muscle: this.state.muscle,
-        //           repsTime: this.state.repsTime,
-        //           weight: this.state.weight
-
-        //         }).then((response) => {
-        //           axios.get('http://localhost:8080/createExercise').then((response) => {
-
-        //             console.log(response.data);
-        //             this.setState({
-        //               exercises: response.data,
-        //             });
-        //           })
-        //         })
-        //       }
-        // }
-
         return (
             <>
                 <Header />
@@ -56,8 +28,8 @@ class SelectWorkout extends React.Component {
                             onChange={this.displayExercises}
                         >
                             {this.props.workouts.map((props) => (
-                                <option value={this.props.workoutName}>
-                                    {this.props.workoutName}
+                                <option value={props.workoutName}>
+                                    {props.workoutName}
                                 </option>
                             ))}
                         </TextField>

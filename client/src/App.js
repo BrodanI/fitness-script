@@ -55,29 +55,6 @@ export default class App extends Component {
     updated: false,
   }
 
-  updateExercise = (e, id) => {
-    const newExerciseList = this.state.exercises.map((item) => {
-      if (item.id === id) {
-        let updatedItem = {
-          ...item
-        }
-        updatedItem[e.target.name] = e.target.value
-        return updatedItem;
-      };
-      return item;
-    })
-    console.log(newExerciseList);
-    this.setState({ exercises: newExerciseList })
-    let ui = this.state.exercises.find((ex) => ex.id === id)
-
-    axios.put(`http://localhost:8080/updateExercise/${ui.id}`, {
-      exerciseName: ui.exerciseName,
-      muscle: ui.muscle,
-      repsTime: ui.repsTime,
-      weight: ui.weight
-    })
-  };
-
   onChange = (e) => {
     e.preventDefault()
     this.setState({
@@ -102,7 +79,28 @@ export default class App extends Component {
     });
   };
 
+  updateExercise = (e, id) => {
+    const newExerciseList = this.state.exercises.map((item) => {
+      if (item.id === id) {
+        let updatedItem = {
+          ...item
+        }
+        updatedItem[e.target.name] = e.target.value
+        return updatedItem;
+      };
+      return item;
+    })
+    console.log(newExerciseList);
+    this.setState({ exercises: newExerciseList })
+    let ui = this.state.exercises.find((ex) => ex.id === id)
 
+    axios.put(`http://localhost:8080/updateExercise/${ui.id}`, {
+      exerciseName: ui.exerciseName,
+      muscle: ui.muscle,
+      repsTime: ui.repsTime,
+      weight: ui.weight
+    })
+  };
 
   componentDidMount() {
     axios.get('http://localhost:8080/createExercise').then((response) => {

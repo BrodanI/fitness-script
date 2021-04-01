@@ -6,7 +6,8 @@ import Footer from '../Footer/Footer.jsx'
 import Header from '../Header/Header'
 
 function CreateWorkout(props) {
-    return (
+
+    return props.exercises && props.workouts && (
         <>
             <Header />
             <div className="createWorkout">
@@ -22,37 +23,31 @@ function CreateWorkout(props) {
                     </div>
 
                     <FormControl variant="filled" className="createWorkout__input-exercise">
+                    {console.log(props)}
                         <TextField
                             id="filled-select-currency-native"
                             select
                             label="Select Exercise"
-                            // value={currency}
                             // onChange={handleChange}
-                            // SelectProps={{
-                            //     native: true,
-                            // }}
                             variant="filled" >
-
-                            {/* {
-                        currencies.map((option) => (
-                            <option key={option.value} value={option.value}>
-                            {option.label}
-                            </option>
-                            ))
-                        } */}
+                            {props.exercises.map((props) => (
+                                <option value={props.exerciseName}>
+                                    {props.exerciseName}
+                                </option>
+                            ))}
                         </TextField>
                     </FormControl>
                 </div>
 
-            {props.exercises.map((exercise) => {
-                return (
-                    <div className="selectWorkout__item">
-                        <ExerciseComponent exercise={exercise} />
-                    </div>
+                {props.exercises.map((exercise) => {
+                    return (
+                        <div className="selectWorkout__item">
+                            <ExerciseComponent exercise={exercise} />
+                        </div>
                     )
                 })}
-                 
-            <Footer />
+
+                <Footer />
             </div>
         </>
     );
