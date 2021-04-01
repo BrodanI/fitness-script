@@ -1,0 +1,27 @@
+@use '../../assets/partials/variables' as *;
+@use '../../assets/partials/mixins' as *;
+
+.exerciseComponent {
+
+    &__item {
+        @include flex-column;
+
+        &-row {
+            @include flex-row;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+
+            &-single {
+                background-color: $blue;
+                border-radius: 5px;
+                width: 47%;
+                box-shadow:  2px 5px 0px 0px $darkBlue;
+            }
+
+            &--margin {
+                margin-top: 1rem;
+            }
+        }
+    }
+
+}

@@ -1,12 +1,13 @@
 import React from 'react';
 import './createExercise.scss'
 import Header from '../Header/Header'
-import ExerciseDisplay from '../ExerciseDisplay/ExerciseDisplay'
+import ExerciseComponent from '../ExerciseComponent/ExerciseComponent'
+import DeleteBtn from '../DeleteBtn/DeleteBtn'
 import Footer from '../Footer/Footer.jsx'
 import TextField from '@material-ui/core/TextField';
 
 function CreateExercise(props) {
-    console.log(props)
+
     return (
         <>
             <Header />
@@ -20,7 +21,7 @@ function CreateExercise(props) {
                         label="Enter"
                         variant="filled"
                         name="exerciseName"
-                        onChange= {props.onChange}
+                        onChange={props.onChange}
                     />
                 </div>
                 <div className="createExercise__field">
@@ -31,7 +32,7 @@ function CreateExercise(props) {
                         label="Enter"
                         variant="filled"
                         name="muscle"
-                        onChange= {props.onChange}
+                        onChange={props.onChange}
                     />
                 </div>
                 <div className="createExercise__field">
@@ -42,7 +43,7 @@ function CreateExercise(props) {
                         label="Enter"
                         variant="filled"
                         name="repsTime"
-                        onChange= {props.onChange}
+                        onChange={props.onChange}
                     />
                 </div>
                 <div className="createExercise__field createExercise__field--divider">
@@ -53,13 +54,21 @@ function CreateExercise(props) {
                         label="Enter"
                         variant="filled"
                         name="weight"
-                        onChange= {props.onChange}
+                        onChange={props.onChange}
                     />
                 </div>
 
-                <ExerciseDisplay />
+                {props.exercises.map((exercise) => {
+                    return (
+                        <>
+                            <ExerciseComponent exercise={exercise} />
+                            <DeleteBtn />
+                        </>
+                    )
+                })
+                };
 
-                <Footer exercises={props.exercises} addExercise={props.addExercise}/>
+                <Footer exercises={props.exercises} addExercise={props.addExercise} />
             </div>
         </>
     );

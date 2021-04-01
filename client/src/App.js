@@ -42,22 +42,42 @@ const theme = createMuiTheme({
 
 export default class App extends Component {
 
+  inputRef = React.createRef()
+
   state = {
     workouts: [],
     exercises: [],
+    id: null,
     exerciseName: null,
     muscle: null,
     respTime: null,
     weight: null,
   }
 
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
-
-    console.log({
-      [e.target.name]: e.target.value
+  updateExercise = (e, id) => {
+    const newExerciseList = this.state.exercises.map((item) => {
+      if (item.id === id) {
+        let updatedItem = {
+          ...item
+        }
+        updatedItem[e.target.name] = e.target.value
+        return updatedItem;
+      };
+      return item;
     })
-    console.log(this.state.exercises);
+
+    this.setState({ exercises: newExerciseList })
+
+    let ui = this.state.exercises.find((ex) => ex.id === id)
+      
+    axios.put(`http://localhost:8080/updateExercise/${ui.id}`, {
+
+      exerciseName: ui.exerciseName,
+      muscle: ui.muscle,
+      repsTime: ui.repsTime,
+      weight: ui.weight
+
+    })
   };
 
   addExercise = (e) => {
@@ -75,6 +95,7 @@ export default class App extends Component {
     });
   };
 
+
   componentDidMount() {
     axios.get('http://localhost:8080/createExercise').then((response) => {
 
@@ -91,10 +112,9 @@ export default class App extends Component {
     });
   };
 
-
   // componentDidUpdate(prevProps, prevState) {
-  //   console.log(prevProps, prevState);
   //   if (prevState.workouts !== this.state.workouts) {
+  //     console.log(prevProps, prevState);
 
   //     let ex = axios.get('http://localhost:8080/createExercise')
   //     let wo = axios.get('http://localhost:8080/createWorkout')
@@ -111,6 +131,7 @@ export default class App extends Component {
   //   }
   // }
 
+
   render() {
     return (
       <div className="App" >
@@ -125,6 +146,7 @@ export default class App extends Component {
                   render={() => <SelectWorkout
                     workouts={this.state.workouts}
                     exercises={this.state.exercises}
+                    updateExercise={this.updateExercise}
                   />}
                 />
 
@@ -149,8 +171,6 @@ export default class App extends Component {
                     exercises={this.state.exercises}
                   />}
                 />
-                {/* <Route path='/login' component={Login} /> */}
-
               </Switch>
 
             </ThemeProvider>

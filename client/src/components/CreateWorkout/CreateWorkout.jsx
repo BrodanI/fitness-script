@@ -1,7 +1,7 @@
 import React from 'react';
 import './createWorkout.scss'
 import { Button, FormControl, TextField } from '@material-ui/core';
-import ExerciseDisplay from '../ExerciseDisplay/ExerciseDisplay.jsx'
+import ExerciseComponent from '../ExerciseComponent/ExerciseComponent.jsx'
 import Footer from '../Footer/Footer.jsx'
 import Header from '../Header/Header'
 
@@ -44,11 +44,15 @@ function CreateWorkout(props) {
                     </FormControl>
                 </div>
 
-                <div>
-                    <ExerciseDisplay />
-                </div>
-
-                <Footer />
+            {props.exercises.map((exercise) => {
+                return (
+                    <div className="selectWorkout__item">
+                        <ExerciseComponent exercise={exercise} />
+                    </div>
+                    )
+                })}
+                 
+            <Footer />
             </div>
         </>
     );

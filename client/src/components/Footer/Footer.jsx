@@ -6,7 +6,7 @@ import { Button } from '@material-ui/core';
 
 function footer(props) {
 
-    console.log(props.exercises)
+    // console.log(props.exercises)
 
     return (
         <div className="footer__btn">

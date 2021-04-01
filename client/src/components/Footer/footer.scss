@@ -4,6 +4,7 @@
 .footer__btn {
     @include flex-row;
     justify-content: space-between;
+    margin-top: 1rem;
 
     &-link {
         width: 47%;

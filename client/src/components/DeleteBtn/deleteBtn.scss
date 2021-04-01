@@ -1,0 +1,12 @@
+@use '../../assets/partials/variables' as *;
+@use '../../assets/partials/mixins' as *;
+
+.delete__btn{
+    margin-bottom: 1rem;
+    box-shadow:  2px 5px 0px 0px $darkRed;
+    
+    &-single{
+        width: 100%;
+        background-color: $red !important;
+    }
+}

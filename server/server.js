@@ -19,8 +19,10 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use("/selectWorkout", workoutRoute)
-app.use("/createExercise", exercisesRoute)
 app.use("/createWorkout", workoutRoute)
+app.use("/updateExercise", exercisesRoute)
+app.use("/createExercise", exercisesRoute)
+app.use("/deleteExercise", exercisesRoute)
 
 app.listen(8080, function(){
     console.log(`listening on port ${PORT}`);
