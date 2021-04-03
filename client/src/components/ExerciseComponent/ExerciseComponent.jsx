@@ -1,6 +1,5 @@
 import React from 'react';
 import './exerciseComponent.scss';
-import axios from 'axios'
 import { TextField } from '@material-ui/core';
 
 class ExerciseComponent extends React.Component {

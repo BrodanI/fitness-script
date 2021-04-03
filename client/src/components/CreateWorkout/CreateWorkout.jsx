@@ -1,9 +1,12 @@
 import React from 'react';
 import './createWorkout.scss'
-import { Button, FormControl, TextField } from '@material-ui/core';
+import axios from 'axios'
+import { FormControl, TextField } from '@material-ui/core';
 import ExerciseComponent from '../ExerciseComponent/ExerciseComponent.jsx'
 import Footer from '../Footer/Footer.jsx'
 import Header from '../Header/Header'
+import { Button } from '@material-ui/core';
+
 
 function CreateWorkout(props) {
 
@@ -18,18 +21,20 @@ function CreateWorkout(props) {
                             id="filled-basic"
                             label="Name Workout"
                             variant="filled"
-                        // defaultValue={exercise.exerciseName}
+                            name="workoutName"
+                            defaultValue=""
+                            onChange={props.handleChange}
+                            onBlur={() => {props.createWorkouts()}}
                         />
                     </div>
 
                     <FormControl variant="filled" className="createWorkout__input-exercise">
-                    {console.log(props)}
                         <TextField
-                            id="filled-select-currency-native"
                             select
                             label="Select Exercise"
-                            // onChange={handleChange}
-                            variant="filled" >
+                            variant="filled" 
+                            onChange={props.exerciseObj}
+                            >
                             {props.exercises.map((props) => (
                                 <option value={props.exerciseName}>
                                     {props.exerciseName}
@@ -39,10 +44,20 @@ function CreateWorkout(props) {
                     </FormControl>
                 </div>
 
+                <div className="createWorkout__btn--divider">
+                    <Button className="createWorkout__btn-link"
+                        onClick= {props.addExerciseToWorkout}
+                        variant="contained"
+                        color="primary"
+                        className="createWorkout__btn--size">
+                        Add Exercise
+                </Button>
+                </div>
+
                 {props.exercises.map((exercise) => {
                     return (
-                        <div className="selectWorkout__item">
-                            <ExerciseComponent exercise={exercise} />
+                        <div className="createWorkout__item">
+                            <ExerciseComponent exercise={exercise} updateExercise={props.updateExercise} />
                         </div>
                     )
                 })}

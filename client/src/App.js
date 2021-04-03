@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, BrowserRouter } from "react-router-dom"
 import axios from "axios";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { StylesProvider, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Home from "./pages/Home"
 import Login from './pages/Login'
 import Signup from './pages/Signup'
@@ -48,6 +48,7 @@ export default class App extends Component {
     workouts: [],
     exercises: [],
     id: null,
+    workoutName: null,
     exerciseName: null,
     muscle: null,
     respTime: null,
@@ -55,12 +56,51 @@ export default class App extends Component {
     updated: false,
   }
 
-  onChange = (e) => {
+  handleChange = (e) => {
     e.preventDefault()
     this.setState({
       [e.target.name]: e.target.value
     })
+    console.log(e.target.value)
   }
+
+  exerciseObj = (e) => {
+    this.setState({
+      exerciseName: e.target.value
+    })
+    console.log(e.target)
+  }
+
+  addExerciseToWorkout = () => {
+    const targetWorkout = this.state.workouts.slice(-1)[0].id;
+    console.log(targetWorkout);
+    
+    const targetExercise = this.state.exercises.find( exObj => exObj.exerciseName === this.state.exerciseName).id
+    console.log(targetExercise)
+
+    // const targetExercise = props.exercise
+    //target workout ID
+    //target exercise ID
+    //on Add = update workoutExerciseData workoutID w/ exerciseId
+  }
+
+
+  createWorkouts = () => {
+    console.log('post')
+    axios.post(`http://localhost:8080/createWorkout`, {
+      workoutName: this.state.workoutName,
+
+    }).then(() => {
+      axios.get('http://localhost:8080/createWorkout').then((response) => {
+        this.setState({
+          workouts: response.data,
+          updated: true,
+        });
+        console.log('client get request');
+        console.log(response.data);
+      });
+    });
+  };
 
   createExercise = () => {
     axios.post(`http://localhost:8080/createExercise`, {
@@ -70,7 +110,6 @@ export default class App extends Component {
       weight: this.state.weight
     }).then((response) => {
       axios.get('http://localhost:8080/createExercise').then((response) => {
-
         this.setState({
           exercises: response.data,
           updated: true,
@@ -120,7 +159,6 @@ export default class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.updated !== this.state.updated) {
-      console.log(this.state.exercises);
 
       let ex = axios.get('http://localhost:8080/createExercise')
       let wo = axios.get('http://localhost:8080/createWorkout')
@@ -132,7 +170,6 @@ export default class App extends Component {
               workouts: responses[1].data,
               updated: false,
             });
-            console.log(this.state.exercises);
           })
         )
     }
@@ -169,14 +206,21 @@ export default class App extends Component {
                     workouts={this.state.workouts}
                     exercises={this.state.exercises}
                     addExercise={this.addExercise}
+                    updateExercise={this.updateExercise}
                     createExercise={this.createExercise}
-                    onChange={this.onChange}
+                    handleChange={this.handleChange}
                   />}
                 />
                 <Route path='/createWorkout'
                   render={() => <CreateWorkout
                     workouts={this.state.workouts}
                     exercises={this.state.exercises}
+                    exerciseName={this.exerciseName}
+                    handleChange={this.handleChange}
+                    exerciseObj={this.exerciseObj}
+                    createWorkouts={this.createWorkouts}
+                    updateExercise={this.updateExercise}
+                    addExerciseToWorkout={this.addExerciseToWorkout}
                   />}
                 />
               </Switch>

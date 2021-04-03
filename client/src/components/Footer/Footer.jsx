@@ -3,10 +3,7 @@ import './footer.scss'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core';
 
-
-function footer(props) {
-
-    // console.log(props.exercises)
+function footer() {
 
     return (
         <div className="footer__btn">
@@ -15,16 +12,6 @@ function footer(props) {
                     color="primary"
                     className="footer__btn--size">
                     Finish!
-                </Button>
-            </Link>
-
-            <Link className="footer__btn-link" >
-                <Button
-                    onClick={props.createExercise}
-                    variant="contained"
-                    color="primary"
-                    className="footer__btn--size">
-                    Add
                 </Button>
             </Link>
         </div>

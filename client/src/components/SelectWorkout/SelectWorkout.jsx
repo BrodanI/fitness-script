@@ -2,7 +2,7 @@ import React from 'react';
 import './selectWorkout.scss'
 import Header from '../Header/Header'
 import ExerciseComponent from '../ExerciseComponent/ExerciseComponent'
-import axios from 'axios'
+import Footer from "../Footer/Footer"
 import { Button, TextField, FormControl } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
@@ -43,16 +43,8 @@ class SelectWorkout extends React.Component {
                         )
                     })};
 
-                    <div className="selectWorkout__btn">
-                        <Link className="selectWorkout__btn-link" to="/">
-                            <Button variant="contained"
-                                color="primary"
-                                className="selectWorkout__btn--size">
-                                Finish!
-                        </Button>
-                        </Link>
-                    </div>
-
+                    <Footer />
+                    
                 </div>
             </>
         );
