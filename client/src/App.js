@@ -78,6 +78,11 @@ export default class App extends Component {
     const targetExercise = this.state.exercises.find( exObj => exObj.exerciseName === this.state.exerciseName).id
     console.log(targetExercise)
 
+    axios.put('http://localhost:8080/createWorkout', {
+      workoutId: targetWorkout,
+      exerciseId: targetExercise,
+    });
+
     // const targetExercise = props.exercise
     //target workout ID
     //target exercise ID

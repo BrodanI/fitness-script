@@ -5,6 +5,7 @@ const axios = require('axios');
 const cors = require('cors');
 const workoutRoute = require('./routes/workouts')
 const exercisesRoute = require('./routes/exercises')
+const workoutExerciseRoute = require('./routes/workoutExercise')
 
 app.use(express.json());
 
@@ -20,6 +21,7 @@ app.use(express.static("public"));
 
 app.use("/selectWorkout", workoutRoute)
 app.use("/createWorkout", workoutRoute)
+app.use("/createWorkout", workoutExerciseRoute)
 app.use("/updateExercise", exercisesRoute)
 app.use("/createExercise", exercisesRoute)
 app.use("/deleteExercise", exercisesRoute)
