@@ -11,12 +11,12 @@ router.get('/', (_req, res) => {
 
 router.post('/', (req, res) => {
   console.log("server post");
-//   new Workouts({
-//     workoutName: req.body.workoutName,
-// })
-//     .save().then(newWorkout => {
-//         res.status(200).json(newWorkout)
-//     });
+  new Workouts({
+    workoutName: req.body.workoutName,
+})
+    .save().then(newWorkout => {
+        res.status(200).json(newWorkout)
+    });
 });
 
 module.exports = router;
