@@ -21,7 +21,7 @@ app.use(express.static("public"));
 
 app.use("/selectWorkout", workoutRoute)
 app.use("/createWorkout", workoutRoute)
-app.use("/createWorkout", workoutExerciseRoute)
+app.use("/createWorkoutExercise", workoutExerciseRoute)
 app.use("/updateExercise", exercisesRoute)
 app.use("/createExercise", exercisesRoute)
 app.use("/deleteExercise", exercisesRoute)
