@@ -3,48 +3,45 @@ import './selectWorkout.scss'
 import Header from '../Header/Header'
 import ExerciseComponent from '../ExerciseComponent/ExerciseComponent'
 import Footer from "../Footer/Footer"
-import { Button, TextField, FormControl } from '@material-ui/core';
-import { Link } from 'react-router-dom'
+import { TextField, FormControl } from '@material-ui/core';
 
 class SelectWorkout extends React.Component {
-    displayExercises = (event) => {
-        // this.setState({
-        //   workouts: event.target.value,
-        // });
-    };
+
+    componentDidMount() {
+        this.props.changeWorkout(null)
+    }
 
     render() {
-
         return (
             <>
                 <Header />
-
                 <div className="selectWorkout">
                     <FormControl variant="filled" className="selectWorkout__select">
                         <TextField
                             select
                             variant="filled"
                             label="Select Workout"
-                            onChange={this.displayExercises}
+                            defaultValue=''
+                            onChange={(e) => this.props.changeWorkout(e.target.value)}
                         >
-                            {this.props.workouts.map((props) => (
-                                <option value={props.workoutName}>
-                                    {props.workoutName}
+                            {this.props.workouts.map((workout) => (
+                                <option key={workout.id} value={workout.id}>
+                                    {workout.workoutName}
                                 </option>
                             ))}
                         </TextField>
                     </FormControl>
 
-                    {this.props.exercises.map((exercise) => {
+                    {this.props.currentWorkoutExercises.map((exercise) => {
                         return (
-                            <div className="selectWorkout__item">
-                                <ExerciseComponent exercise={exercise} updateExercise={this.props.updateExercise}/>
+                            <div key={exercise.id} className="selectWorkout__item">
+                                <ExerciseComponent exercise={exercise} updateExercise={this.props.updateExercise} />
                             </div>
                         )
                     })};
 
                     <Footer />
-                    
+
                 </div>
             </>
         );

@@ -9,7 +9,7 @@ function Header(props) {
     return (
         <div className="header">
             <img className="header__logo" src={Logo} alt="" />
-            <Link to="/" className="header__title" >
+            <Link to="/home" className="header__title" >
                 <Button color="primary" style={{ fontSize: 24 }}>Fitness Script</Button>
             </Link>
             <MenuIcon color="primary" style={{ fontSize: 30 }}></MenuIcon>

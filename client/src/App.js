@@ -42,53 +42,43 @@ const theme = createMuiTheme({
 
 export default class App extends Component {
 
-  inputRef = React.createRef()
-
   state = {
     workouts: [],
+    currentWorkoutExercises: [],
     exercises: [],
+    workoutExercise: [],
     id: null,
     workoutName: null,
     exerciseName: null,
     muscle: null,
-    respTime: null,
+    repsTime: null,
     weight: null,
     updated: false,
   }
 
+  displayErrorExerciseName = () => {
+    return (this.state.exerciseName === "" ? true : false)
+  }
+
+  displayErrorRepsTime = () => {
+    return (this.state.repsTime === "" ? true : false)
+  }
+
+  displayErrorMuscle = () => {
+    return (this.state.muscle === "" ? true : false)
+  }
+
   handleChange = (e) => {
-    e.preventDefault()
     this.setState({
       [e.target.name]: e.target.value
     })
-    console.log(e.target.value)
   }
 
   exerciseObj = (e) => {
     this.setState({
       exerciseName: e.target.value
     })
-    console.log(e.target)
   }
-
-  addExerciseToWorkout = () => {
-    const targetWorkout = this.state.workouts.slice(-1)[0].id;
-    console.log(targetWorkout);
-    
-    const targetExercise = this.state.exercises.find( exObj => exObj.exerciseName === this.state.exerciseName).id
-    console.log(targetExercise)
-
-    axios.put('http://localhost:8080/createWorkout', {
-      workoutId: targetWorkout,
-      exerciseId: targetExercise,
-    });
-
-    // const targetExercise = props.exercise
-    //target workout ID
-    //target exercise ID
-    //on Add = update workoutExerciseData workoutID w/ exerciseId
-  }
-
 
   createWorkouts = () => {
     console.log('post')
@@ -101,11 +91,41 @@ export default class App extends Component {
           workouts: response.data,
           updated: true,
         });
-        console.log('client get request');
         console.log(response.data);
       });
     });
   };
+
+  workoutExerciseDisplay = () => {
+    const targetWorkout = this.state.workouts.slice(-1)[0].id;
+    const targetExercise = this.state.exercises.find(exObj => exObj.exerciseName === this.state.exerciseName).id;
+
+    console.log(targetWorkout);
+    console.log(targetExercise);
+
+    axios.put('http://localhost:8080/createWorkoutExercise', {
+      workoutId: targetWorkout,
+      exerciseId: targetExercise,
+    }).then(() => {
+      axios.get('http://localhost:8080/createWorkoutExercise', {
+      }).then((response) => {
+        this.setState({
+          workoutExercise: response.data
+        })
+
+        this.changeWorkout(targetWorkout)
+      })
+    })
+  }
+
+  changeWorkout = (workoutId) => {
+    const resultIds = this.state.workoutExercise.map(workoutExercise => workoutExercise.workoutId === workoutId ? workoutExercise.exerciseId : false);
+    const results = this.state.exercises.filter(exercise => resultIds.includes(exercise.id));
+
+    this.setState({
+      currentWorkoutExercises: results
+    });
+  }
 
   createExercise = () => {
     axios.post(`http://localhost:8080/createExercise`, {
@@ -159,6 +179,13 @@ export default class App extends Component {
           workouts: response.data
         });
       });
+    }).then(() => {
+      axios.get('http://localhost:8080/createWorkoutExercise').then((response) => {
+
+        this.setState({
+          workoutExercise: response.data
+        });
+      });
     });
   };
 
@@ -167,12 +194,14 @@ export default class App extends Component {
 
       let ex = axios.get('http://localhost:8080/createExercise')
       let wo = axios.get('http://localhost:8080/createWorkout')
-      axios.all([ex, wo])
+      let we = axios.get('http://localhost:8080/createWorkoutExercise')
+      axios.all([ex, wo, we])
         .then(
           axios.spread((...responses) => {
             this.setState({
               exercises: responses[0].data,
               workouts: responses[1].data,
+              workoutExercise: responses[2].data,
               updated: false,
             });
           })
@@ -190,20 +219,21 @@ export default class App extends Component {
               <CssBaseline />
 
               <Switch>
-                <Route path='/' exact component={Home} />
+                <Route path='/' exact
+                  render={() => <Login />}
+                />
+                <Route path='/signup'
+                  render={() => <Signup />}
+                />
+                <Route path='/home' component={Home} />
                 <Route path='/selectWorkout'
                   render={() => <SelectWorkout
                     workouts={this.state.workouts}
                     exercises={this.state.exercises}
+                    currentWorkoutExercises={this.state.currentWorkoutExercises}
                     updateExercise={this.updateExercise}
+                    changeWorkout={this.changeWorkout}
                   />}
-                />
-
-                <Route path='/login' exact
-                  render={() => <Login />}
-                />
-                <Route path='/login/signup'
-                  render={() => <Signup />}
                 />
 
                 <Route path='/createExercise'
@@ -214,18 +244,22 @@ export default class App extends Component {
                     updateExercise={this.updateExercise}
                     createExercise={this.createExercise}
                     handleChange={this.handleChange}
+                    displayErrorExerciseName={this.displayErrorExerciseName}
+                    displayErrorMuscle={this.displayErrorMuscle}
+                    displayErrorRepsTime={this.displayErrorRepsTime}
                   />}
                 />
                 <Route path='/createWorkout'
                   render={() => <CreateWorkout
                     workouts={this.state.workouts}
+                    currentWorkoutExercises={this.state.currentWorkoutExercises}
                     exercises={this.state.exercises}
-                    exerciseName={this.exerciseName}
                     handleChange={this.handleChange}
                     exerciseObj={this.exerciseObj}
                     createWorkouts={this.createWorkouts}
                     updateExercise={this.updateExercise}
-                    addExerciseToWorkout={this.addExerciseToWorkout}
+                    changeWorkout={this.changeWorkout}
+                    workoutExerciseDisplay={this.workoutExerciseDisplay}
                   />}
                 />
               </Switch>

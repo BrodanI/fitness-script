@@ -3,9 +3,9 @@ import './exerciseComponent.scss';
 import { TextField } from '@material-ui/core';
 
 class ExerciseComponent extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             exercise: this.props.exercise
         }
     }
@@ -16,7 +16,6 @@ class ExerciseComponent extends React.Component {
                 <div className="exerciseComponent__item-row exerciseComponent__item-row--margin">
                     <TextField
                         className="exerciseComponent__item-row-single"
-                        id="filled-basic"
                         label="Exercise"
                         variant="filled"
                         name="exerciseName"
@@ -25,10 +24,9 @@ class ExerciseComponent extends React.Component {
                             e.preventDefault();
                             this.props.updateExercise(e, this.state.exercise.id)
                         }}
-                        />
+                    />
                     <TextField
                         className="exerciseComponent__item-row-single"
-                        id="filled-basic"
                         label="Muscle"
                         variant="filled"
                         name="muscle"
@@ -37,12 +35,11 @@ class ExerciseComponent extends React.Component {
                             e.preventDefault();
                             this.props.updateExercise(e, this.state.exercise.id)
                         }}
-                        />
+                    />
                 </div>
                 <div className="exerciseComponent__item-row">
                     <TextField
                         className="exerciseComponent__item-row-single"
-                        id="filled-basic"
                         label="Reps/Time"
                         variant="filled"
                         name="repsTime"
@@ -51,10 +48,9 @@ class ExerciseComponent extends React.Component {
                             e.preventDefault();
                             this.props.updateExercise(e, this.state.exercise.id)
                         }}
-                        />
+                    />
                     <TextField
                         className="exerciseComponent__item-row-single"
-                        id="filled-basic"
                         label="Weight"
                         variant="filled"
                         name="weight"
@@ -63,7 +59,7 @@ class ExerciseComponent extends React.Component {
                             e.preventDefault();
                             this.props.updateExercise(e, this.state.exercise.id)
                         }}
-                        />
+                    />
                 </div>
             </div>
         )

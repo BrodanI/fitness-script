@@ -7,8 +7,7 @@ function DeleteBtn(props) {
     
     function deleteExercise () {
         axios.delete(`http://localhost:8080/deleteExercise/${props.exercise.id}`).then(
-            console.log(props.exercise.id),
-            // window.location.reload()
+            window.location.reload()
         );
     }
 

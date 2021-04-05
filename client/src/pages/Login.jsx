@@ -16,33 +16,26 @@ class Login extends Component {
                 <FormControl variant="filled" className="login__form">
                     <TextField
                         className="login__form-input"
-                        id="filled-basic"
                         label="Email"
-                        // value={currency}
-                        // onChange={handleChange}
-                        // SelectProps={{
-                        //     native: true,
-                        // }}
                         variant="filled" >
                     </TextField>
 
                     <TextField
                         className="login__form-input"
-                        id="filled-password-input"
                         label="Password"
                         type="password"
                         autoComplete="current-password"
                         variant="filled"
                     />
 
-                    <Link className="login__form-btn--link" to='/'>
+                    <Link className="login__form-btn--link" to='/home'>
                         <Button variant="contained"
                             className="login__form-btn">
                             Sign In
                     </Button>
                     </Link>
 
-                    <Link className="login__form-btn--link" to='/login/signup'>
+                    <Link className="login__form-btn--link" to='/signup'>
                         <Button variant="contained"
                             className="login__form-btn">
                             Create an Account

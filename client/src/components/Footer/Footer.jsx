@@ -7,7 +7,7 @@ function footer() {
 
     return (
         <div className="footer__btn">
-            <Link className="footer__btn-link" to='/'>
+            <Link className="footer__btn-link" to='/home'>
                 <Button variant="contained"
                     color="primary"
                     className="footer__btn--size">

@@ -9,7 +9,7 @@ router.get('/', (_req, res) => {
         });
 });
 
-router.post('/', (req, _res) => {
+router.post('/', (req, res) => {
     new Exercises({
         exerciseName: req.body.exerciseName,
         muscle: req.body.muscle,
