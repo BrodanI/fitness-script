@@ -27,16 +27,6 @@ const theme = createMuiTheme({
     delete: {
       main: 'b42f20',
     },
-    // warning: {
-    //   main: '#0044ff',
-    // },
-    // info: {
-    //   main: '#b42f20',
-    // },
-    // success: {
-    //   main: '#0044ff', 
-    // },
-
   }
 });
 
@@ -57,17 +47,14 @@ export default class App extends Component {
   }
 
   displayErrorExerciseName = () => {
-    console.log("Exercise func reached");
     return (this.state.exerciseName === "" ? true : false)
   }
   
   displayErrorRepsTime = () => {
-    console.log("reps func reached");
     return (this.state.repsTime === "" ? true : false)
   }
   
   displayErrorMuscle = () => {
-    console.log("muscle func reached");
     return (this.state.muscle === "" ? true : false)
   }
   
@@ -84,7 +71,6 @@ export default class App extends Component {
   }
 
   createWorkouts = () => {
-    console.log('post')
     axios.post(`http://localhost:8080/createWorkout`, {
       workoutName: this.state.workoutName,
 
@@ -94,7 +80,6 @@ export default class App extends Component {
           workouts: response.data,
           updated: true,
         });
-        console.log(response.data);
       });
     });
   };
@@ -102,9 +87,6 @@ export default class App extends Component {
   workoutExerciseDisplay = () => {
     const targetWorkout = this.state.workouts.slice(-1)[0].id;
     const targetExercise = this.state.exercises.find(exObj => exObj.exerciseName === this.state.exerciseName).id;
-
-    console.log(targetWorkout);
-    console.log(targetExercise);
 
     axios.put('http://localhost:8080/createWorkoutExercise', {
       workoutId: targetWorkout,
@@ -157,7 +139,6 @@ export default class App extends Component {
       };
       return item;
     })
-    console.log(newExerciseList);
     this.setState({ exercises: newExerciseList })
     let ui = this.state.exercises.find((ex) => ex.id === id)
 
