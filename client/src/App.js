@@ -13,16 +13,16 @@ import CreateExercise from './components/CreateExercise/CreateExercise'
 const theme = createMuiTheme({
   palette: {
     background: {
-      default: '#101820',
+      default: '#101820', //background
     },
     primary: {
-      main: '#20B460', //bottomLogo
+      main: '#20B460', //medGreen
     },
     secondary: {
       main: '#2074b4', //blue
     },
     error: {
-      main: '#b42f20', //red
+      main: '#701f16', //darkRed
     },
     delete: {
       main: 'b42f20',
@@ -30,9 +30,9 @@ const theme = createMuiTheme({
     // warning: {
     //   main: '#0044ff',
     // },
-    info: {
-      main: '#b42f20',
-    },
+    // info: {
+    //   main: '#b42f20',
+    // },
     // success: {
     //   main: '#0044ff', 
     // },
@@ -57,17 +57,20 @@ export default class App extends Component {
   }
 
   displayErrorExerciseName = () => {
+    console.log("Exercise func reached");
     return (this.state.exerciseName === "" ? true : false)
   }
-
+  
   displayErrorRepsTime = () => {
+    console.log("reps func reached");
     return (this.state.repsTime === "" ? true : false)
   }
-
+  
   displayErrorMuscle = () => {
+    console.log("muscle func reached");
     return (this.state.muscle === "" ? true : false)
   }
-
+  
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -208,7 +211,6 @@ export default class App extends Component {
         )
     }
   }
-
 
   render() {
     return (

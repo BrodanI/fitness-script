@@ -53,8 +53,7 @@ class CreateWorkout extends React.Component {
                         <Button className="createWorkout__btn-link"
                             onClick={this.props.workoutExerciseDisplay}
                             variant="contained"
-                            color="primary"
-                            >
+                            color="primary">
                             Add Exercise
                         </Button>
                     </div>

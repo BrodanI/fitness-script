@@ -75,7 +75,10 @@ function CreateExercise(props) {
                 {props.exercises && props.exercises.map((exercise) => {
                     return (
                         <div key={exercise.id}>
-                            <ExerciseComponent exercise={exercise} updateExercise={props.updateExercise} />
+                            <ExerciseComponent 
+                            exercise={exercise} 
+                            updateExercise={props.updateExercise} 
+                            />
                             <DeleteBtn exercise={exercise} />
                         </div>
                     )

@@ -35,7 +35,10 @@ class SelectWorkout extends React.Component {
                     {this.props.currentWorkoutExercises.map((exercise) => {
                         return (
                             <div key={exercise.id} className="selectWorkout__item">
-                                <ExerciseComponent exercise={exercise} updateExercise={this.props.updateExercise} />
+                                <ExerciseComponent 
+                                exercise={exercise} 
+                                updateExercise={this.props.updateExercise} 
+                                />
                             </div>
                         )
                     })};
