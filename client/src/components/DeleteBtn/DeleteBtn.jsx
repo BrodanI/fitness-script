@@ -3,10 +3,15 @@ import './deleteBtn.scss'
 import axios from 'axios'
 import { Button } from '@material-ui/core';
 
+const API_URL = process.env.NODE_ENV === "production"
+  ? 'https://pure-garden-23361.herokuapp.com'
+  : 'http://localhost:8080';
+
+
 function DeleteBtn(props) {
     
     function deleteExercise () {
-        axios.delete(`http://localhost:8080/deleteExercise/${props.exercise.id}`).then(
+        axios.delete(`${API_URL}/deleteExercise/${props.exercise.id}`).then(
             window.location.reload()
         );
     }
