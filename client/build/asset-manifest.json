@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5ea370df.chunk.css",
+    "main.js": "/static/js/main.f96f0527.chunk.js",
+    "main.js.map": "/static/js/main.f96f0527.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.0759d46c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.0759d46c.js.map",
+    "static/js/2.1119f319.chunk.js": "/static/js/2.1119f319.chunk.js",
+    "static/js/2.1119f319.chunk.js.map": "/static/js/2.1119f319.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.5ea370df.chunk.css.map": "/static/css/main.5ea370df.chunk.css.map",
+    "static/js/2.1119f319.chunk.js.LICENSE.txt": "/static/js/2.1119f319.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/static/media/Montserrat-Regular.518803d3.woff2",
+    "static/media/home.scss": "/static/media/selectWorkout.f9a1197c.jpg",
+    "static/media/fitness_script_logo.fb47fafc.svg": "/static/media/fitness_script_logo.fb47fafc.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0759d46c.js",
+    "static/js/2.1119f319.chunk.js",
+    "static/css/main.5ea370df.chunk.css",
+    "static/js/main.f96f0527.chunk.js"
+  ]
+}
