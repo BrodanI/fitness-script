@@ -10,6 +10,10 @@ import SelectWorkout from './components/SelectWorkout/SelectWorkout'
 import CreateWorkout from './components/CreateWorkout/CreateWorkout'
 import CreateExercise from './components/CreateExercise/CreateExercise'
 
+const API_URL = process.env.NODE_ENV === "production"
+  ? 'https://pure-garden-23361.herokuapp.com'
+  : 'http://localhost:8080';
+
 const theme = createMuiTheme({
   palette: {
     background: {
@@ -71,11 +75,11 @@ export default class App extends Component {
   }
 
   createWorkouts = () => {
-    axios.post(`http://localhost:8080/createWorkout`, {
+    axios.post(`${API_URL}/createWorkout`, {
       workoutName: this.state.workoutName,
 
     }).then(() => {
-      axios.get('http://localhost:8080/createWorkout').then((response) => {
+      axios.get(`${API_URL}/createWorkout`).then((response) => {
         this.setState({
           workouts: response.data,
           updated: true,
@@ -88,11 +92,11 @@ export default class App extends Component {
     const targetWorkout = this.state.workouts.slice(-1)[0].id;
     const targetExercise = this.state.exercises.find(exObj => exObj.exerciseName === this.state.exerciseName).id;
 
-    axios.put('http://localhost:8080/createWorkoutExercise', {
+    axios.put(`${API_URL}/createWorkoutExercise`, {
       workoutId: targetWorkout,
       exerciseId: targetExercise,
     }).then(() => {
-      axios.get('http://localhost:8080/createWorkoutExercise', {
+      axios.get(`${API_URL}/createWorkoutExercise`, {
       }).then((response) => {
         this.setState({
           workoutExercise: response.data
@@ -113,13 +117,13 @@ export default class App extends Component {
   }
 
   createExercise = () => {
-    axios.post(`http://localhost:8080/createExercise`, {
+    axios.post(`${API_URL}/createExercise`, {
       exerciseName: this.state.exerciseName,
       muscle: this.state.muscle,
       repsTime: this.state.repsTime,
       weight: this.state.weight
     }).then((response) => {
-      axios.get('http://localhost:8080/createExercise').then((response) => {
+      axios.get(`${API_URL}/createExercise`).then((response) => {
         this.setState({
           exercises: response.data,
           updated: true,
@@ -142,7 +146,7 @@ export default class App extends Component {
     this.setState({ exercises: newExerciseList })
     let ui = this.state.exercises.find((ex) => ex.id === id)
 
-    axios.put(`http://localhost:8080/updateExercise/${ui.id}`, {
+    axios.put(`${API_URL}/updateExercise/${ui.id}`, {
       exerciseName: ui.exerciseName,
       muscle: ui.muscle,
       repsTime: ui.repsTime,
@@ -151,20 +155,20 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    axios.get('http://localhost:8080/createExercise').then((response) => {
+    axios.get(`${API_URL}/createExercise`).then((response) => {
 
       this.setState({
         exercises: response.data,
       });
     }).then(() => {
-      axios.get('http://localhost:8080/createWorkout').then((response) => {
+      axios.get(`${API_URL}/createWorkout`).then((response) => {
 
         this.setState({
           workouts: response.data
         });
       });
     }).then(() => {
-      axios.get('http://localhost:8080/createWorkoutExercise').then((response) => {
+      axios.get(`${API_URL}/createWorkoutExercise`).then((response) => {
 
         this.setState({
           workoutExercise: response.data
@@ -176,9 +180,9 @@ export default class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.updated !== this.state.updated) {
 
-      let ex = axios.get('http://localhost:8080/createExercise')
-      let wo = axios.get('http://localhost:8080/createWorkout')
-      let we = axios.get('http://localhost:8080/createWorkoutExercise')
+      let ex = axios.get(`${API_URL}/createExercise`)
+      let wo = axios.get(`${API_URL}/createWorkout`)
+      let we = axios.get(`${API_URL}/createWorkoutExercise`)
       axios.all([ex, wo, we])
         .then(
           axios.spread((...responses) => {
