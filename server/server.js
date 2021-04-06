@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const PORT = 8080
-const axios = require('axios');
+const PORT = process.env.PORT || 8080
 const cors = require('cors');
+const morgan = require('morgan');
 const workoutRoute = require('./routes/workouts')
 const exercisesRoute = require('./routes/exercises')
 const workoutExerciseRoute = require('./routes/workoutExercise')
@@ -15,7 +15,7 @@ app.use(cors());
 //     res.header("Access-Control-Allow-Header", "Origin, X-Requested-With, Content-Type, Accept");
 //     next();
 // });
-
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.use(express.json());
 app.use(express.static("public"));
 
