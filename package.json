@@ -1,26 +1,22 @@
 {
-  "name": "server",
+  "name": "fitness-script",
   "version": "1.0.0",
-  "description": "fitness-script-server",
+  "description": "Fitness App",
   "main": "server.js",
-  "dependencies": {
-    "axios": "^0.21.1",
-    "bookshelf": "^1.2.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "knex": "^0.95.2",
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.7"
-  },
-  "devDependencies": {},
+  "engines": {
+    "node": "14.15.5"
+},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "migrate": "knex migrate:latest",
-    "migrate:down": "knex migrate:down",
-    "migrate:rollback": "knex migrate:rollback",
-    "seed": "knex seed:run"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrodanI/fitness-script.git"
   },
   "author": "Brodan Iredale",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrodanI/fitness-script/issues"
+  },
+  "homepage": "https://github.com/BrodanI/fitness-script#readme"
 }
