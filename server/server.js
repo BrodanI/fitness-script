@@ -6,7 +6,7 @@ const mysql = require("mysql");
 const knex = require("./knexfile");
 const app = express();
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8080
 const workoutRoute = require('./routes/workouts')
 const exercisesRoute = require('./routes/exercises')
 const workoutExerciseRoute = require('./routes/workoutExercise')
