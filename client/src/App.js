@@ -10,9 +10,7 @@ import SelectWorkout from './components/SelectWorkout/SelectWorkout'
 import CreateWorkout from './components/CreateWorkout/CreateWorkout'
 import CreateExercise from './components/CreateExercise/CreateExercise'
 
-const API_URL = process.env.NODE_ENV === "production"
-  ? 'https://pure-garden-23361.herokuapp.com'
-  : 'http://localhost:8080';
+const API_URL = process.env.NODE_ENV === "production" ? 'https://pure-garden-23361.herokuapp.com' : 'http://localhost:8080';
 
 const theme = createMuiTheme({
   palette: {
