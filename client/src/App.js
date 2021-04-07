@@ -154,6 +154,8 @@ export default class App extends Component {
 
   deleteExercise = () => {
     console.log(API_URL);
+    console.log(API_URL);
+    console.log("Delete button clicked");
     axios.delete(`${API_URL}/deleteExercise/${this.state.exercises[0].id}`).then(
         window.location.reload()
     );
