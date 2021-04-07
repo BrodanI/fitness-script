@@ -12,7 +12,7 @@ function DeleteBtn(props) {
     
     function deleteExercise () {
         axios.delete(`https://pure-garden-23361.herokuapp.com/deleteExercise/${props.exercise.id}`).then(
-            // window.location.reload()
+            window.location.reload()
         );
     }
 
