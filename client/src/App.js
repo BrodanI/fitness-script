@@ -152,6 +152,13 @@ export default class App extends Component {
     })
   };
 
+  deleteExercise = (id) => {
+    console.log(API_URL);
+    axios.delete(`${API_URL}/deleteExercise/${this.state.exercises[0].id}`).then(
+        window.location.reload()
+    );
+}
+
   componentDidMount() {
     axios.get(`${API_URL}/createExercise`).then((response) => {
 
@@ -228,6 +235,7 @@ export default class App extends Component {
                     addExercise={this.addExercise}
                     updateExercise={this.updateExercise}
                     createExercise={this.createExercise}
+                    deleteExercise={this.deleteExercise}
                     handleChange={this.handleChange}
                     displayErrorExerciseName={this.displayErrorExerciseName}
                     displayErrorMuscle={this.displayErrorMuscle}

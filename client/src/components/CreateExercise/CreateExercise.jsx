@@ -79,7 +79,7 @@ function CreateExercise(props) {
                             exercise={exercise} 
                             updateExercise={props.updateExercise} 
                             />
-                            <DeleteBtn exercise={exercise} />
+                            <DeleteBtn exercise={exercise} deleteExercise={props.deleteExercise}/>
                         </div>
                     )
                 })
