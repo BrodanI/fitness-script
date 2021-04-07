@@ -21,10 +21,10 @@ function CreateExercise(props) {
                         variant="filled"
                         label="Enter"
                         name="exerciseName"
-                        error={props.displayErrorExerciseName()}
+                        error= {props.displayErrorExerciseName()}
                         helperText={props.displayErrorExerciseName() === true ? 'Please enter a name' : ''}
                         onChange={props.handleChange}
-                    />
+                        />
                 </div>
                 <div className="createExercise__field">
                     <h3 className="createExercise__field-name">Muscle</h3>
@@ -33,10 +33,10 @@ function CreateExercise(props) {
                         label="Enter"
                         variant="filled"
                         name="muscle"
-                        error={props.displayErrorMuscle()}
+                        error= {props.displayErrorMuscle()}
                         helperText={props.displayErrorMuscle() === true ? 'Please enter a muscle group' : ''}
                         onChange={props.handleChange}
-                    />
+                        />
                 </div>
                 <div className="createExercise__field">
                     <h3 className="createExercise__field-name">Reps/Time</h3>
@@ -45,7 +45,7 @@ function CreateExercise(props) {
                         label="Enter"
                         variant="filled"
                         name="repsTime"
-                        error={props.displayErrorRepsTime()}
+                        error= {props.displayErrorRepsTime()}
                         helperText={props.displayErrorRepsTime() === true ? 'Please enter number of reps or time' : ''}
                         onChange={props.handleChange}
                     />
@@ -75,21 +75,11 @@ function CreateExercise(props) {
                 {props.exercises && props.exercises.map((exercise) => {
                     return (
                         <div key={exercise.id}>
-                            <ExerciseComponent
-                                exercise={exercise}
-                                updateExercise={props.updateExercise}
+                            <ExerciseComponent 
+                            exercise={exercise} 
+                            updateExercise={props.updateExercise} 
                             />
-
-                            <div className="delete__btn">
-                                <Button
-                                    variant="contained"
-                                    className="delete__btn-single"
-                                    onClick={props.deleteExercise}
-                                >
-                                    Delete
-                                </Button>
-                            </div>
-                            {/* <DeleteBtn exercise={exercise} deleteExercise={props.deleteExercise} /> */}
+                            <DeleteBtn exercise={exercise}/>
                         </div>
                     )
                 })
