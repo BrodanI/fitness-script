@@ -1,0 +1,29 @@
+@use '../../assets/partials/variables' as *;
+@use '../../assets/partials/mixins' as *;
+
+.menu{
+    position: fixed;
+    @include flex-column;
+    justify-content: space-between;
+    top: 3.5rem;
+    right: 0px;
+    width: 80%;
+    height: 93%;
+    background-color:#101820;
+    padding: 1rem 0;
+    z-index: 100;
+
+    &__link{
+        text-decoration: none;
+    }
+
+    &__btn{
+        width: 65%;
+        box-shadow:  2px 5px 0px 0px $green;
+        border-radius: 5px;
+
+        &--size{
+            width: 100%;
+        }
+    }
+}

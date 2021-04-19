@@ -211,7 +211,12 @@ export default class App extends Component {
                 <Route path='/signup'
                   render={() => <Signup />}
                 />
-                <Route path='/home' component={Home} />
+                <Route path='/home' 
+                render={() => <Home
+                  exercises={this.state.exercises}
+                
+                />}
+                />
                 <Route path='/selectWorkout'
                   render={() => <SelectWorkout
                     workouts={this.state.workouts}

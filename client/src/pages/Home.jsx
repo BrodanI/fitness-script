@@ -1,6 +1,7 @@
 import React from 'react';
 import './home.scss'
 import Header from '../components/Header/Header'
+import ProgressBar from '../components/ProgressBar/ProgressBar'
 import { Link } from 'react-router-dom'
 
 function Home(props) {
@@ -9,7 +10,9 @@ function Home(props) {
             <Header />
             <div className="home">
 
-                <h2 className="home__progress">Progress Bar: Coming soon!</h2>
+                <ProgressBar 
+                exercises={props.exercises}
+                />
                 <Link to="/selectWorkout" className="home__select-workout"><h2>Select Workout</h2></Link>
 
                 <div className="home__create">
